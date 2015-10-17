@@ -22,6 +22,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    int precision = 4;
     int lookup[256] = {-1};
     lookup['A'] = 0;
     lookup['T'] = 1;
@@ -37,6 +38,7 @@ int main(int argc, char **argv) {
     while((read = getc(nucleotide_sequence)) != EOF) {
         int indx = lookup[read];
         if (indx != -1) {
+            total_nucleotides++;
             probabilities[indx] ++;
             if (last != 0) {
                 last[indx] ++;
@@ -45,12 +47,59 @@ int main(int argc, char **argv) {
         }
     }
 
-    printf("P(A=%i, T=%i, G=%i, C=%i\n"
-            ,probabilities[0]
-            ,probabilities[1]
-            ,probabilities[2]
-            ,probabilities[3]);
+    printf("P(A=%.*f, T=%.*f, G=%.*f, C=%.*f)\n\n"
+            ,precision
+            ,((float)probabilities[0])/total_nucleotides
+            ,precision
+            ,((float)probabilities[1])/total_nucleotides
+            ,precision
+            ,((float)probabilities[2])/total_nucleotides
+            ,precision
+            ,((float)probabilities[3])/total_nucleotides);
 
 
+
+
+    printf("       A      T      G      C\n");
+    printf("  _____________________________\n");
+    printf("A | %.*f %.*f %.*f %.*f\n"
+            ,precision
+            ,((float)transitions[0][0])/total_nucleotides
+            ,precision
+            ,((float)transitions[0][1])/total_nucleotides
+            ,precision
+            ,((float)transitions[0][2])/total_nucleotides
+            ,precision
+            ,((float)transitions[0][3])/total_nucleotides);
+
+    printf("T | %.*f %.*f %.*f %.*f\n"
+            ,precision
+            ,((float)transitions[1][0])/total_nucleotides
+            ,precision
+            ,((float)transitions[1][1])/total_nucleotides
+            ,precision
+            ,((float)transitions[1][2])/total_nucleotides
+            ,precision
+            ,((float)transitions[1][3])/total_nucleotides);
+    
+    printf("G | %.*f %.*f %.*f %.*f\n"
+            ,precision
+            ,((float)transitions[2][0])/total_nucleotides
+            ,precision
+            ,((float)transitions[2][1])/total_nucleotides
+            ,precision
+            ,((float)transitions[2][2])/total_nucleotides
+            ,precision
+            ,((float)transitions[2][3])/total_nucleotides);
+
+    printf("C | %.*f %.*f %.*f %.*f\n"
+            ,precision
+            ,((float)transitions[3][0])/total_nucleotides
+            ,precision
+            ,((float)transitions[3][1])/total_nucleotides
+            ,precision
+            ,((float)transitions[3][2])/total_nucleotides
+            ,precision
+            ,((float)transitions[3][3])/total_nucleotides);
 }
 
