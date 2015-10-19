@@ -1,4 +1,9 @@
-
+/*
+ * Copyright (C) 2015 Ted Meyer
+ *
+ * see LICENSING for details
+ *
+ */
 
 #include <stdio.h>
 

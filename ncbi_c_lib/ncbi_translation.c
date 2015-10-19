@@ -1,8 +1,14 @@
-
+/*
+ * Copyright (C) 2015 Ted Meyer
+ *
+ * see LICENSING for details
+ *
+ */
 
 #include "http.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define QUERY_URL "http://www.ncbi.nlm.nih.gov/nuccore/%s?report=docsum&log$=seqview"
 #define GENOME_URL "http://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?val=%s&dopt=fasta&sendto=t"
@@ -47,12 +53,14 @@ void setargs(char *flag, char *arg, char **query, FILE **out) {
     }
 
     if (!strcmp(flag, "-f")) {
-        puts("-f not implemented");
+        perror("-f not implemented");
+        exit(1);
         return;
     }
 
     if (!strcmp(flag, "--file")) {
-        puts("--file not implemented");
+        perror("--file not implemented");
+        exit(1);
         return;
     }
 
