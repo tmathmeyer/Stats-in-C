@@ -7,6 +7,6 @@ all:
 
 
 clean:
-	rm nucleotide-freq-transmatrix
-	rm nucleotide-strip-invalid
-	rm chi-squared-tester
+	@rm nucleotide-freq-transmatrix
+	@rm nucleotide-strip-invalid
+	@rm chi-squared-tester
